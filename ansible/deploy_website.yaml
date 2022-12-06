@@ -1,0 +1,14 @@
+---
+- name: deploy website
+  hosts: webserver
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+  - name: Run website docker
+    shell: |
+      sudo docker run --pull=always --name website -p 80:80 -d quay.io/yigald/website
+    register: docekr_run_status
+
+  - name: Print run docker result
+    debug:
+      msg: "stdout: {{ docekr_run_status.stdout }} | result:  {{ docekr_run_status.result }}"

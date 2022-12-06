@@ -1,0 +1,19 @@
+[
+  {
+    "ParameterKey": "AMI",
+    "ParameterValue": "ami-06640050dc3f556bb"
+  },
+  {
+    "ParameterKey": "KeyName",
+    "ParameterValue": "key1"
+  },
+  {
+    "ParameterKey": "InstanceType",
+    "ParameterValue": "t2.micro"
+  },
+  {
+    "ParameterKey": "Ec2SecurityGroup",
+    "ParameterValue": "default"
+  }
+]
+

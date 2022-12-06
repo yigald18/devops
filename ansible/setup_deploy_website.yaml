@@ -1,0 +1,29 @@
+---
+- name: update webservers
+  hosts: webserver
+  tasks:
+  - name: thing to do first in this playbook
+    debug:
+      msg: "Fixing RH docker repo"
+    replace:
+      path: /etc/ansible/sample.txt
+      regexp: 'Unix'
+      replace: "Linux"
+
+  - name: Install a list of packages (suitable replacement for 2.11 loop deprecation warning)
+    yum:
+      name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-compose-plugin
+      state: present
+
+  - name: Run website docker
+    shell: |
+      docker run -it quay.io/yigald/test.py:v1
+    register: docekr_run_status
+
+  - name: Print run docker result
+    debug:
+      msg: "stdout: {{ docekr_run_status.stdout }} | result:  {{ docekr_run_status.result }}"

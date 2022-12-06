@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Parameters:
+  AMI:
+    Type: String
+  KeyName:
+    Type: String
+  InstanceType:
+    Type: String
+  Ec2SecurityGroup:
+    Type: String
+Resources:
+  EC2Instance:
+      Type: AWS::EC2::Instance
+      Properties:
+          ImageId: !Ref AMI
+          KeyName: !Ref KeyName
+          InstanceType: !Ref InstanceType
+          SecurityGroups:
+          - !Ref Ec2SecurityGroup
+          BlockDeviceMappings:
+          -
+            DeviceName: /dev/sda1
+            Ebs:
+              VolumeSize: 100
+
+Outputs:
+  EC2InstanceID:
+      Description: SEC2InstanceID.
+      Value:
+        !Ref EC2Instance
